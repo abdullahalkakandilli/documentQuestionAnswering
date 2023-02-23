@@ -52,13 +52,18 @@ else:
 
     st.stop()
 
+import os
+
+filenames = os.listdir(".")
+selected_filename = st.selectbox('Select a file', filenames)
+
 df = pd.DataFrame(columns=['Image', 'Answer'])
 def pdf_checker(question_):
     nlp = pipeline(
         "document-question-answering",
         model="impira/layoutlm-document-qa",
     )
-    for image in images_:
+    for image in Image_list:
         result = nlp(
             image,
             question_
