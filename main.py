@@ -71,6 +71,8 @@ import os
 filenames = os.listdir('Tesseract-OCR')
 selected_filename = st.selectbox('Select a file', filenames)
 
+pytesseract.pytesseract.tesseract_cmd = r"Tesseract-OCR\tesseract.exe"
+
 
 
 form = st.form(key="annotation")
