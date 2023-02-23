@@ -1,6 +1,7 @@
 from pathlib import Path
 import PyPDF2
 from PIL import Image
+from wand.image import Image
 import streamlit as st
 import pandas as pd
 import tempfile
@@ -60,17 +61,15 @@ if uploaded_file is not None:
 
 pdf_file = st.file_uploader("Upload PDF", type="pdf")
 
+
+
+
 # Convert PDF to JPG
 if pdf_file is not None:
-    pdf_reader = PyPDF2.PdfFileReader(pdf_file)
-    page = pdf_reader.getPage(0) # Get the first page
-    page_obj = page.to_page_output() # Convert the page to a page object
-    img = Image.open(page_obj)
-    img.save("output.jpg") # Save the image to a file
-
-    # Display the converted image
-    st.image("output.jpg", caption="Converted Image", use_column_width=True)
-
+    with Image(filename='pdf_file', resolution=300) as img:
+        img.format = 'jpeg'
+        img.compression_quality = 90
+        img.save(filename='page.jpg')
 
 
 else:
