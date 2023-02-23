@@ -37,7 +37,7 @@ images_ = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multi
 if images_ is not None:
     st.write(images_)
     for i in range(len(images_)):
-        st.write(images_[i])
+        st.write(images_.UploadedFile['name'])
 
 
 
