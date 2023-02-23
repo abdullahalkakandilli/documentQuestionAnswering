@@ -1,15 +1,5 @@
-import zipfile
-from pathlib import Path
 import streamlit as st
-import pandas as pd
-from functionforDownloadButtons import download_button
-import pytesseract
 from transformers import pipeline
-from pdf2image.exceptions import (
-    PDFInfoNotInstalledError,
-    PDFPageCountError,
-    PDFSyntaxError
-)
 
 
 def _max_width_():
