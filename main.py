@@ -1,4 +1,3 @@
-from io import BytesIO
 from pathlib import Path
 import PyPDF2
 from PIL import Image
@@ -65,16 +64,14 @@ pdf_file = st.file_uploader("Upload PDF", type="pdf")
 if pdf_file is not None:
     pdf_reader = PyPDF2.PdfFileReader(pdf_file)
     page = pdf_reader.getPage(0) # Get the first page
-    png_image = page.get('/Resources').get('/XObject').getObject().values()[0].getData()
-
-    # Convert the PNG image to a PIL image
-    pil_image = Image.open(BytesIO(png_image))
-
-    # Display the converted image
-    st.image(pil_image, caption="Converted Image", use_column_width=True)
-
+    page_obj = page.to_page_output() # Convert the page to a page object
+    img = Image.open(page_obj)
+    img.save("output.jpg") # Save the image to a file
 
     # Display the converted image
+    st.image("output.jpg", caption="Converted Image", use_column_width=True)
+
+
 
 else:
     st.info(
