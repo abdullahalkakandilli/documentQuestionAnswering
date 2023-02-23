@@ -40,7 +40,9 @@ with c2:
 images_ = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multiple_files=True)
 # Convert PDF to JPG
 
-
+df = pd.DataFrame()
+image_name = []
+answer_list = []
 def image_checker(question_):
     nlp = pipeline(
         "document-question-answering",
@@ -53,10 +55,12 @@ def image_checker(question_):
                 image_opened,
                 question_
             )
+            image_name.append(image_opened)
+            answer_list.append(result[0]['answer'])
 
-            new_row = {'Image Name': image, 'Answer': result[0]['answer']}
-            st.write(new_row)
-            finelResult = finelResult.append(new_row, ignore_index=True)
+
+        df['Image_name'] = image_name
+        df['answer'] = answer_list
     else:
         st.info(
             f"""
@@ -66,7 +70,7 @@ def image_checker(question_):
 
         st.stop()
 
-    return (finelResult)
+    return (df)
 
 form = st.form(key="annotation")
 with form:
