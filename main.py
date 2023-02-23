@@ -54,7 +54,7 @@ def image_checker(question_):
                 question_
             )
             new_row = {'Image': image, 'Answer': result}
-            df = df.append(new_row, ignore_index=True)
+            df.append(new_row, ignore_index=True)
     else:
         st.info(
             f"""
