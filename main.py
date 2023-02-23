@@ -40,14 +40,14 @@ images_ = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multi
 # Convert PDF to JPG
 
 df = pd.DataFrame(columns=['Image', 'Answer'])
-def pdf_checker(question_):
+def image_checker(question_):
     nlp = pipeline(
         "document-question-answering",
         model="impira/layoutlm-document-qa",
     )
     if images_ is not None:
         for image in images_:
-            image_opened = Image.open(i)
+            image_opened = Image.open(image)
             result = nlp(
                 image_opened,
                 question_
@@ -74,7 +74,7 @@ with form:
 
 if submitted:
 
-    answer = pdf_checker(question_)
+    answer = image_checker(question_)
 
 
 c29, c30, c31 = st.columns([1, 1, 2])
