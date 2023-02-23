@@ -3,7 +3,7 @@ import pandas as pd
 from functionforDownloadButtons import download_button
 from pdf2image import convert_from_path
 import pytesseract
-from pdf2jpg import pdf2jpg
+
 from transformers import pipeline
 from pdf2image.exceptions import (
     PDFInfoNotInstalledError,
@@ -45,10 +45,8 @@ with c2:
 uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
 
 if uploaded_file is not None:
-    outputpath = r""
-    result_img = pdf2jpg.convert_pdf2jpg(uploaded_file,outputpath, pages="ALL")
-    #result.save('page' + '.jpg', 'JPEG')
-    print(result_img)
+    image_ = convert_from_path(uploaded_file)
+    image_[0].save('page' + '.jpg', 'JPEG')
     uploaded_file.seek(0)
 
 else:
@@ -67,14 +65,14 @@ def pdf_checker(question_):
     )
 
     result = nlp(
-        outputpath,
+        "page.jpg",
         question_
     )
     return (result)
 
 form = st.form(key="annotation")
 with form:
-    question_ = st.text_input('enter your text here')
+    question_ = st.text_input()
 
     submitted = st.form_submit_button(label="Submit")
 
