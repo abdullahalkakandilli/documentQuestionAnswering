@@ -1,8 +1,8 @@
 from pathlib import Path
 import PyPDF2
 from PIL import Image
-from wand.image import Image
 import streamlit as st
+import wand
 import pandas as pd
 import tempfile
 from functionforDownloadButtons import download_button
@@ -66,7 +66,7 @@ pdf_file = st.file_uploader("Upload PDF", type="pdf")
 
 # Convert PDF to JPG
 if pdf_file is not None:
-    with Image(filename='pdf_file', resolution=300) as img:
+    with wand.image(filename='pdf_file', resolution=300) as img:
         img.format = 'jpeg'
         img.compression_quality = 90
         img.save(filename='page.jpg')
