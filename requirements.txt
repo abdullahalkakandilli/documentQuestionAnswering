@@ -1,0 +1,7 @@
+streamlit
+streamlit_pandas_profiling
+transformers
+pdf2image
+torch
+pytesseract
+tesseract
