@@ -58,7 +58,7 @@ def pdf_checker(question_):
         "document-question-answering",
         model="impira/layoutlm-document-qa",
     )
-    for image in Image_list:
+    for image in images_:
         result = nlp(
             image,
             question_
