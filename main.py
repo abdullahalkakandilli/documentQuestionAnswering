@@ -32,10 +32,10 @@ with c2:
             width=200,
         )
 
-pdf_file = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multiple_files=True)
+images_ = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multiple_files=True)
 # Convert PDF to JPG
-if pdf_file is not None:
-        st.write("succesfull")
+if images_ is not None:
+        st.write(images_)
 
 
 else:
