@@ -1,5 +1,8 @@
+from pathlib import Path
+
 import streamlit as st
 import pandas as pd
+import tempfile
 from functionforDownloadButtons import download_button
 from pdf2image import convert_from_path
 import pytesseract
@@ -44,9 +47,15 @@ with c2:
 uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
 
 if uploaded_file is not None:
-    image_ = convert_from_path(uploaded_file)
-    image_[0].save('page' + '.jpg', 'JPEG')
-    uploaded_file.seek(0)
+    # Make temp file path from uploaded file
+    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+        st.markdown("## Original PDF file")
+        fp = Path(tmp_file.name)
+        fp.write_bytes(uploaded_file.getvalue())
+        imgs = convert_from_path(tmp_file.name)
+        imgs[0].save('page' + '.jpg', 'JPEG')
+        st.markdown(f"Converted images from PDF")
+        st.image(imgs)
 
 else:
     st.info(
