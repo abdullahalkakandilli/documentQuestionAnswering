@@ -1,4 +1,3 @@
-import pdfplumber as pdfplumber
 import streamlit as st
 import pandas as pd
 from functionforDownloadButtons import download_button
@@ -42,21 +41,15 @@ with c2:
             "images/logo.png",
             width=200,
         )
-def extract_data(feed):
-    data = []
-    with pdfplumber.load(feed) as pdf:
-        pages = pdf.pages
-        for p in pages:
-            data.append(p.extract_tables())
-    return None
 
-uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
+uploaded_file = st.file_uploader(
+    " ",
+    key="1",
+    help="To activate 'wide mode', go to the hamburger menu > Settings > turn on 'wide mode'",
+    type="pdf",
+)
+
 if uploaded_file is not None:
-    df = extract_data(uploaded_file)
-
-st.write(df)
-
-'''if uploaded_file is not None:
     image_ = convert_from_path(uploaded_file)
     image_[0].save('page' + '.jpg', 'JPEG')
     uploaded_file.seek(0)
@@ -98,4 +91,3 @@ c29, c30, c31 = st.columns([1, 1, 2])
 
 with c29:
     st.write(answer)
-'''
