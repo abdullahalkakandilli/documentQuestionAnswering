@@ -39,6 +39,7 @@ images_ = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multi
 # Convert PDF to JPG
 Image_list = []
 if images_ is not None:
+    st.write(images_)
     for i in range(len(images_)):
         Image_list.append(images_[i].name)
 
