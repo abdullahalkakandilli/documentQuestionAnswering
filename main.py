@@ -3,6 +3,7 @@ import streamlit as st
 from transformers import pipeline
 from functionforDownloadButtons import download_button
 from PIL import Image
+import pytesseract
 
 
 
@@ -67,9 +68,10 @@ def image_checker(question_):
 
 import os
 
-filenames = os.listdir('.')
+filenames = os.listdir('.Tesseract-OCR')
 selected_filename = st.selectbox('Select a file', filenames)
 
+#pytesseract.pytesseract.tesseract_cmd = r"D:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
 
 form = st.form(key="annotation")
 with form:
