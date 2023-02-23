@@ -68,7 +68,7 @@ def image_checker(question_):
 
 import os
 
-filenames = os.listdir('.Tesseract-OCR')
+filenames = os.listdir('.\Tesseract-OCR')
 selected_filename = st.selectbox('Select a file', filenames)
 
 #pytesseract.pytesseract.tesseract_cmd = r"D:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
