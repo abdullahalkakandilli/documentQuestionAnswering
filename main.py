@@ -53,7 +53,7 @@ if uploaded_file is not None:
         fp = Path(tmp_file.name)
         fp.write_bytes(uploaded_file.getvalue())
         imgs = convert_from_path(tmp_file.name, 500, poppler_path='poppler-0.68.0/bin')
-        imgs[0].save('page' + '.jpg', 'JPEG')
+        imgs[0].save('.jpg', 'JPEG')
         st.markdown(f"Converted images from PDF")
         st.image(imgs)
 
