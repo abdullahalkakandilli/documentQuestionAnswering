@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 from transformers import pipeline
 from functionforDownloadButtons import download_button
+from PIL import Image
 
 
 
@@ -41,8 +42,9 @@ Image_list = []
 if images_ is not None:
     st.write(images_)
     for i in range(len(images_)):
+        image_opened = Image.open(i)
         Image_list.append(images_[i].name)
-
+        st.write(image_opened)
 else:
     st.info(
         f"""
@@ -52,10 +54,7 @@ else:
 
     st.stop()
 
-import os
 
-filenames = os.listdir(".streamlit")
-selected_filename = st.selectbox('Select a file', filenames)
 
 df = pd.DataFrame(columns=['Image', 'Answer'])
 def pdf_checker(question_):
