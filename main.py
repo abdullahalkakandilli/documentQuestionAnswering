@@ -40,7 +40,7 @@ with c2:
 images_ = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multiple_files=True)
 # Convert PDF to JPG
 
-
+df = pd.DataFrame()
 def image_checker(question_):
     nlp = pipeline(
         "document-question-answering",
@@ -54,7 +54,7 @@ def image_checker(question_):
                 question_
             )
             new_row = {'Image': image, 'Answer': result}
-            df = df.append(new_row, ignore_index=True)
+            finelResult = df.append(new_row, ignore_index=True)
     else:
         st.info(
             f"""
@@ -64,7 +64,7 @@ def image_checker(question_):
 
         st.stop()
 
-    return (df)
+    return (finelResult)
 
 form = st.form(key="annotation")
 with form:
@@ -83,7 +83,7 @@ c29, c30, c31 = st.columns([1, 1, 2])
 with c29:
 
     CSVButton = download_button(
-        df,
+        answer,
         "FlaggedFile.csv",
         "Download to CSV",
     )
