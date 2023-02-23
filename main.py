@@ -40,7 +40,7 @@ with c2:
 images_ = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multiple_files=True)
 # Convert PDF to JPG
 
-df = pd.DataFrame()
+
 def image_checker(question_):
     nlp = pipeline(
         "document-question-answering",
@@ -54,7 +54,7 @@ def image_checker(question_):
                 question_
             )
             new_row = {'Image': image, 'Answer': result}
-            df.append(new_row, ignore_index=True)
+            df = df.append(new_row, ignore_index=True)
     else:
         st.info(
             f"""
