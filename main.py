@@ -54,7 +54,7 @@ else:
 
 import os
 
-filenames = os.listdir(".")
+filenames = os.listdir(".streamlit")
 selected_filename = st.selectbox('Select a file', filenames)
 
 df = pd.DataFrame(columns=['Image', 'Answer'])
