@@ -1,14 +1,8 @@
 import zipfile
 from pathlib import Path
-import PyPDF2
-from PIL import Image
-from wand.image import Image
 import streamlit as st
-import wand
 import pandas as pd
-import tempfile
 from functionforDownloadButtons import download_button
-from pdf2image import convert_from_path
 import pytesseract
 from transformers import pipeline
 from pdf2image.exceptions import (
