@@ -55,7 +55,7 @@ def image_checker(question_):
                 image_opened,
                 question_
             )
-            image_name.append(image_opened)
+            image_name.append(image.name)
             answer_list.append(result[0]['answer'])
 
 
