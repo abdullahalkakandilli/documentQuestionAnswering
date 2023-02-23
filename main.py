@@ -72,14 +72,9 @@ if pdf_file is not None:
 
     # Display the converted image
     st.image(pil_image, caption="Converted Image", use_column_width=True)
-'''    page_obj = page.to_page_output() # Convert the page to a page object
-    img = Image.open(page_obj)
-    img.save("output.jpg") # Save the image to a file'''
+
 
     # Display the converted image
-    st.image("output.jpg", caption="Converted Image", use_column_width=True)
-
-
 
 else:
     st.info(
