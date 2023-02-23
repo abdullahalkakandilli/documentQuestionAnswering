@@ -69,7 +69,7 @@ def pdf_checker(question_):
 
 form = st.form(key="annotation")
 with form:
-    question_ = st.text_input()
+    question_ = st.text_input("Enter your query!")
 
     submitted = st.form_submit_button(label="Submit")
 
