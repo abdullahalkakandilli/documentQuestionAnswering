@@ -2,7 +2,6 @@ streamlit
 streamlit_pandas_profiling
 transformers
 pdf2image
-pdf2jpg
 torch
 pytesseract
 tesseract

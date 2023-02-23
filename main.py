@@ -3,7 +3,6 @@ import pandas as pd
 from functionforDownloadButtons import download_button
 from pdf2image import convert_from_path
 import pytesseract
-
 from transformers import pipeline
 from pdf2image.exceptions import (
     PDFInfoNotInstalledError,
