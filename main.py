@@ -34,11 +34,11 @@ with c2:
 
 images_ = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multiple_files=True)
 # Convert PDF to JPG
+Image_list = []
 if images_ is not None:
-    st.write(images_)
     for i in range(len(images_)):
-        st.write(images_[i].name)
-
+        Image_list.append(images_[i].name)
+        st.write(Image_list)
 
 
 
