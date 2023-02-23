@@ -23,5 +23,5 @@ result = nlp(
     "What is total amount?"
 )
 
-print(result)
+print(result[0]['answer'])
 
