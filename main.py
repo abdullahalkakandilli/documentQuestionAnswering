@@ -60,7 +60,7 @@ def image_checker(question_):
 
 
         df['Image_name'] = image_name
-        df['answer'] = answer_list
+        df[question_] = answer_list
     else:
         st.info(
             f"""
