@@ -1,6 +1,8 @@
+import zipfile
 from pathlib import Path
 import PyPDF2
 from PIL import Image
+from wand.image import Image
 import streamlit as st
 import wand
 import pandas as pd
@@ -46,30 +48,10 @@ with c2:
             width=200,
         )
 
-'''uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
-
-if uploaded_file is not None:
-    # Make temp file path from uploaded file
-    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-        st.markdown("## Original PDF file")
-        fp = Path(tmp_file.name)
-        fp.write_bytes(uploaded_file.getvalue())
-        imgs = convert_from_path(tmp_file.name, 500, poppler_path='poppler-0.68.0/bin')
-        imgs[0].save('.jpg', 'JPEG')
-        st.markdown(f"Converted images from PDF")
-        st.image(imgs)'''
-
-pdf_file = st.file_uploader("Upload PDF", type="pdf")
-
-
-
-
+pdf_file = st.file_uploader("Upload PDF", type="jpg", accept_multiple_files=True)
 # Convert PDF to JPG
 if pdf_file is not None:
-    with wand.image(filename='pdf_file', resolution=300) as img:
-        img.format = 'jpeg'
-        img.compression_quality = 90
-        img.save(filename='page.jpg')
+        st.write("succesfull")
 
 
 else:

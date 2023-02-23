@@ -19,9 +19,9 @@ nlp = pipeline(
 )
 
 result = nlp(
-    "page.jpg",
-    "What is the invoice number?"
+    r"C:\Users\alka\Masaüstü\total2.PNG",
+    "What is total amount?"
 )
 
-
+print(result)
 

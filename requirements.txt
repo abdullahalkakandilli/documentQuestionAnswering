@@ -1,9 +1,6 @@
 streamlit
 streamlit_pandas_profiling
 transformers
-pdf2image
 torch
 pytesseract
 tesseract
-PyPDF2 == 2.12.1
-wand
