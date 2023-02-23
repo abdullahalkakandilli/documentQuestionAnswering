@@ -54,6 +54,7 @@ def image_checker(question_):
                 question_
             )
             new_row = {'Image Name': image, 'Answer': result[0]['answer']}
+            st.write(new_row)
             finelResult = df.append(new_row, ignore_index=True)
     else:
         st.info(
