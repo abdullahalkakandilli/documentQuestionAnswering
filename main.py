@@ -41,9 +41,9 @@ images_ = st.file_uploader("Upload PDF", type=["png","jpg","jpeg"], accept_multi
 Image_list = []
 if images_ is not None:
     st.write(images_)
-    for i in range(len(images_)):
+    for i in images_:
         image_opened = Image.open(i)
-        Image_list.append(images_[i].name)
+        #Image_list.append(images_[i].name)
         st.write(image_opened)
 else:
     st.info(
