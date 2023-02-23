@@ -1,6 +1,7 @@
 from pathlib import Path
 import PyPDF2
 from PIL import Image
+import io
 import streamlit as st
 import pandas as pd
 import tempfile
@@ -64,12 +65,18 @@ pdf_file = st.file_uploader("Upload PDF", type="pdf")
 if pdf_file is not None:
     pdf_reader = PyPDF2.PdfFileReader(pdf_file)
     page = pdf_reader.getPage(0) # Get the first page
-    page_obj = page.to_page_output() # Convert the page to a page object
-    img = Image.open(page_obj)
-    img.save("output.jpg") # Save the image to a file
+    img_bytes = io.BytesIO()
+    page_obj = page['/Resources']['/XObject'].getObject()['/Im0']
+    img = Image.frombytes(
+        mode='RGB',
+        size=(page_obj['/Width'], page_obj['/Height']),
+        data=page_obj.stream.read()
+    )
+    img.save(img_bytes, format='PNG')
+    img_bytes.seek(0)
 
     # Display the converted image
-    st.image("output.jpg", caption="Converted Image", use_column_width=True)
+    st.image(img_bytes, caption="Converted Image", use_column_width=True)
 
 
 
