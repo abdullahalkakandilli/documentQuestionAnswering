@@ -65,6 +65,12 @@ def image_checker(question_):
 
     return (df)
 
+import os
+
+filenames = os.listdir('.')
+selected_filename = st.selectbox('Select a file', filenames)
+
+
 form = st.form(key="annotation")
 with form:
     question_ = st.text_input("Enter your query!")
