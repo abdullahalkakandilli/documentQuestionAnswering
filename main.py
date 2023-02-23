@@ -1,5 +1,8 @@
+import pandas as pd
 import streamlit as st
 from transformers import pipeline
+from functionforDownloadButtons import download_button
+
 
 
 def _max_width_():
@@ -38,9 +41,6 @@ Image_list = []
 if images_ is not None:
     for i in range(len(images_)):
         Image_list.append(images_[i].name)
-        st.write(Image_list)
-
-
 
 else:
     st.info(
@@ -51,17 +51,21 @@ else:
 
     st.stop()
 
+df = pd.DataFrame(columns=['Image', 'Answer'])
 def pdf_checker(question_):
     nlp = pipeline(
         "document-question-answering",
         model="impira/layoutlm-document-qa",
     )
+    for image in Image_list:
+        result = nlp(
+            image,
+            question_
+        )
+        new_row = {'Image': image, 'Answer': result}
+        df = df.append(new_row, ignore_index=True)
 
-    result = nlp(
-        "page.jpg",
-        question_
-    )
-    return (result)
+    return (df)
 
 form = st.form(key="annotation")
 with form:
@@ -78,4 +82,10 @@ if submitted:
 c29, c30, c31 = st.columns([1, 1, 2])
 
 with c29:
-    st.write(answer)
+
+    CSVButton = download_button(
+        df,
+        "FlaggedFile.csv",
+        "Download to CSV",
+    )
+
