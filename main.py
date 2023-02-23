@@ -53,7 +53,7 @@ def image_checker(question_):
                 image_opened,
                 question_
             )
-            new_row = {'Image': image, 'Answer': result}
+            new_row = {'Image': image, 'Answer': result[0].answer}
             finelResult = df.append(new_row, ignore_index=True)
     else:
         st.info(
@@ -72,10 +72,10 @@ with form:
 
     submitted = st.form_submit_button(label="Submit")
 
-
+answer_ = pd.DataFrame()
 if submitted:
 
-    answer = image_checker(question_)
+    answer_ = image_checker(question_)
 
 
 c29, c30, c31 = st.columns([1, 1, 2])
@@ -83,7 +83,7 @@ c29, c30, c31 = st.columns([1, 1, 2])
 with c29:
 
     CSVButton = download_button(
-        answer,
+        answer_,
         "FlaggedFile.csv",
         "Download to CSV",
     )
