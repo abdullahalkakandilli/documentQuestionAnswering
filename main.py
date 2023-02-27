@@ -67,7 +67,7 @@ def image_checker(question_):
                 👆 Upload a .csv file first. Sample to try: [biostats.csv](https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv)
                 """
         )
-        st.video('https://youtu.be/5rACpMjHBN0')
+        st.video('https://youtu.be/GXSWg_1dRrk')
         st.stop()
 
     return (df)
@@ -97,4 +97,4 @@ with c29:
 c6, c7, c8 = st.columns([1, 6, 1])
 
 with c7:
-    st.video('https://youtu.be/5rACpMjHBN0')
+    st.video('https://youtu.be/GXSWg_1dRrk')
