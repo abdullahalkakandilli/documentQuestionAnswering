@@ -44,32 +44,32 @@ df = pd.DataFrame()
 image_name = []
 answer_list = []
 def image_checker(question_):
-    nlp = pipeline(
-        "document-question-answering",
-        model="impira/layoutlm-document-qa",
-    )
-    if images_ is not None:
-        for image in images_:
-            image_opened = Image.open(image)
-            st.write(image_opened)
-            result = nlp(
-                image_opened,
-                question_
-            )
-            image_name.append(image.name)
-            answer_list.append(result[0]['answer'])
 
-
-        df['Image_name'] = image_name
-        df[question_] = answer_list
-    else:
-        st.info(
-            f"""
-                👆 Upload a .csv file first. Sample to try: [biostats.csv](https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv)
-                """
+    try:
+        nlp = pipeline(
+            "document-question-answering",
+            model="impira/layoutlm-document-qa",
         )
-        st.video('https://youtu.be/GXSWg_1dRrk')
-        st.stop()
+        if images_ is not None:
+            for image in images_:
+                image_opened = Image.open(image)
+                st.write(image_opened)
+                result = nlp(
+                    image_opened,
+                    question_
+                )
+                image_name.append(image.name)
+                answer_list.append(result[0]['answer'])
+
+
+            df['Image_name'] = image_name
+            df[question_] = answer_list
+
+            st.video('https://youtu.be/GXSWg_1dRrk')
+            st.stop()
+
+    except:
+        st.write("Upload image")
 
     return (df)
 
