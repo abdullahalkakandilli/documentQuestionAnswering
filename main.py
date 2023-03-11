@@ -51,6 +51,7 @@ def image_checker(question_):
     if images_ is not None:
         for image in images_:
             image_opened = Image.open(image)
+            st.write(image_opened)
             result = nlp(
                 image_opened,
                 question_
